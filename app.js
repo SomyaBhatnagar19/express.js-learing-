@@ -1,8 +1,11 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer((req, res) => {
-    // console.log(req.url, req.method, req.headers);
+     
     const url = req.url;
+    const method = req.method;
+    
     if (url === '/') {
         res.write('<html>');
         res.write("<head><title>Enter Message</title></head>");
@@ -10,6 +13,15 @@ const server = http.createServer((req, res) => {
         res.write("</html>");
         return res.end();
     }
+
+    //for saving the message in the post request
+    if(url === '/message' && method === 'POST') {
+        fs.writeFileSync('message.txt', 'DUMMY');
+        res.statusCode = 302; //if there is any error then the user gets redirected to this 302 error page
+        res.setHeader('Location', '/'); //automatically redirects to the host being used
+        return res.end();
+    }
+
     res.setHeader('Content-Type', 'text/html');
     res.write('<html>');
     res.write('<head><title>My First Page</title><head>');
