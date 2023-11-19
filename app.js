@@ -1,19 +1,20 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-    console.log(req.url, req.method, req.headers);
-    res.setHeader('Content-Type', 'text/html');
-
-    if (req.url === '/home') {
-        res.write("<html><head><title>Home Page</title></head><body>Welcome home</body></html>");
-    } else if (req.url === '/about') {
-        res.write("<html><head><title>About Us Page</title></head><body>Welcome to About Us page</body></html>");
-    } else if (req.url === '/node') {
-        res.write("<html><head><title>Node.js Project</title></head><body>Welcome to my Node Js project</body></html>");
-    } else {
-        res.write("<html><head><title>Not Found</title></head><body>404 - Not Found</body></html>");
+    // console.log(req.url, req.method, req.headers);
+    const url = req.url;
+    if (url === '/') {
+        res.write('<html>');
+        res.write("<head><title>Enter Message</title></head>");
+        res.write("<body><form action='/message' method='POST'><label>Enter your message:- </label><input type='text' name='message'><button>Send</button></form></body>")
+        res.write("</html>");
+        return res.end();
     }
-
+    res.setHeader('Content-Type', 'text/html');
+    res.write('<html>');
+    res.write('<head><title>My First Page</title><head>');
+    res.write('<body><h1>Hello from my node.js server!</h1></body>')
+    res.write('</html>');
     res.end();
 });
 
