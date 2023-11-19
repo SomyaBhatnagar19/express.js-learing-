@@ -31,4 +31,13 @@ const requestHandler = (req, res) => {
     }
 }
 
-module.exports = requestHandler; // Export the function
+// module.exports = requestHandler; // Export the function- method1
+// module.export = {
+//     //making object to export - method2
+//     handler: requestHandler,
+//     someText: 'Some hard Coded Text.'
+// }
+
+//method3
+exports.handler = requestHandler;
+exports.someText = 'Some Hard Coded Text';
