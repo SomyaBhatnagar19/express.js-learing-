@@ -31,6 +31,7 @@ const requestHandler = (req, res) => {
     }
 }
 
+
 // module.exports = requestHandler; // Export the function- method1
 // module.export = {
 //     //making object to export - method2
